@@ -1,1 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
+import type { InferInsertModel } from 'drizzle-orm';
+import type { posts } from './server/db/schema';
+
+export type TPost = InferInsertModel<typeof posts>;
