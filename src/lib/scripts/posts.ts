@@ -1,4 +1,5 @@
 import type { TPost } from '$lib';
+import { redirect } from '@sveltejs/kit';
 
 export async function getPosts() {
 	let response = await fetch('/api/posts', {
