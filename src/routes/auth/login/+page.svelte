@@ -2,10 +2,13 @@
 	import { enhance } from '$app/forms';
 	import Block from '$lib/components/Block.svelte';
 	import Column from '$lib/components/Column.svelte';
-	import { json } from '@sveltejs/kit';
 	import type { ActionData } from './$types';
 
 	let { form }: { form: ActionData } = $props();
+	let loginSocial = $state({
+		provider: '',
+		callbackURL: '/'
+	});
 </script>
 
 <Column>
@@ -31,18 +34,7 @@
 	</Block>
 
 	<Block>
-		<form method="post" action="?/signInSocial" use:enhance>
-			<input type="hidden" name="provider" value="github" />
-			<input type="hidden" name="callbackURL" value="/" />
-			<button>Sign in with GitHub</button>
-		</form>
-
-		<form method="post" action="?/signInSocial" use:enhance>
-			<input type="hidden" name="provider" value="google" />
-			<input type="hidden" name="callbackURL" value="/auth" />
-			<button>Sign in with Google</button>
-		</form>
-
+		<p>Воити через api:</p>
 		<button
 			class="btn btn-sm btn-dark text-light"
 			onclick={async () => {
@@ -61,7 +53,23 @@
 						}
 					}
 				});
-			}}>Вход через Google и мой api</button
+			}}>Google через api</button
 		>
+	</Block>
+
+	<Block _class="bg-info bg-opacity-10 p-3 rounded">
+		<p>Воити через форму:</p>
+		<form method="post" action="?/signInSocial" use:enhance>
+			<input type="hidden" name="provider" bind:value={loginSocial.provider} />
+			<input type="hidden" name="callbackURL" bind:value={loginSocial.callbackURL} />
+			<button
+				class="btn btn-sm btn-dark text-light"
+				onclick={() => (loginSocial.provider = 'github')}>GitHub через форму</button
+			>
+			<button
+				class="btn btn-sm btn-dark text-light"
+				onclick={() => (loginSocial.provider = 'google')}>Google через форму</button
+			>
+		</form>
 	</Block>
 </Column>
