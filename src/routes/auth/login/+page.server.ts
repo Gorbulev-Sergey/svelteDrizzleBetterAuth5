@@ -71,6 +71,7 @@ export const actions: Actions = {
 		});
 
 		if (result.url) {
+			console.log('на сервере');
 			return redirect(302, result.url);
 		}
 		return fail(400, { message: 'Social sign-in failed' });
