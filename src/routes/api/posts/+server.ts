@@ -1,4 +1,3 @@
-import { auth } from '$lib/server/auth.js';
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
