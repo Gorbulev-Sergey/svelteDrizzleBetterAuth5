@@ -25,7 +25,6 @@
 					headers: {
 						'Content-Type': 'application/json'
 					}
-					// куки автоматически отправятся, если они HttpOnly и SameSite настроены правильно
 				}).then((r) => {
 					if (r.ok) goto('/auth/login');
 				});

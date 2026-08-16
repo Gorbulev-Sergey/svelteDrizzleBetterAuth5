@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import Block from '$lib/components/Block.svelte';
 	import Column from '$lib/components/Column.svelte';
+	import { json } from '@sveltejs/kit';
 	import type { ActionData } from './$types';
 
 	let { form }: { form: ActionData } = $props();
@@ -32,7 +33,7 @@
 	<Block>
 		<form method="post" action="?/signInSocial" use:enhance>
 			<input type="hidden" name="provider" value="github" />
-			<input type="hidden" name="callbackURL" value="/auth" />
+			<input type="hidden" name="callbackURL" value="/" />
 			<button>Sign in with GitHub</button>
 		</form>
 
@@ -41,5 +42,26 @@
 			<input type="hidden" name="callbackURL" value="/auth" />
 			<button>Sign in with Google</button>
 		</form>
+
+		<button
+			class="btn btn-sm btn-dark text-light"
+			onclick={async () => {
+				await fetch('/api/auth1/signInSocial', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json'
+					},
+					body: JSON.stringify({ provider: 'google', callbackURL: '/' })
+				}).then(async (r) => {
+					if (r.ok) {
+						const data = await r.json();
+						if (data.redirectUrl) {
+							window.location.href = data.redirectUrl;
+							return;
+						}
+					}
+				});
+			}}>Вход через Google и мой api</button
+		>
 	</Block>
 </Column>
