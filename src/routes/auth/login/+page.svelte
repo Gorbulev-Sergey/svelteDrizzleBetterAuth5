@@ -5,7 +5,7 @@
 	import type { ActionData } from './$types';
 
 	let { form }: { form: ActionData } = $props();
-	let name = $state('');
+	let isLogin = $state(true);
 	let loginSocial = $state({
 		provider: '',
 		callbackURL: '/'
@@ -14,7 +14,19 @@
 
 <Column>
 	<Block>
-		<p><b>Воити</b> (Зарегистрироваться) через логин и пароль:</p>
+		<div class="d-flex align-items-center justify-content-between">
+			<p><b>{isLogin ? 'Воити' : 'Зарегистрироваться'}</b> через логин и пароль:</p>
+
+			<div class="d-flex align-items-center">
+				<button class="btn btn-sm bg-transparent text-dark border-0" style="cursor: text;"
+					>или</button
+				>
+				<button class="btn btn-sm bg-light text-dark" onclick={() => (isLogin = !isLogin)}
+					>{!isLogin ? 'Воити' : 'Зарегистрироваться'}
+				</button>
+			</div>
+		</div>
+
 		<div class="d-flex flex-column gap-2">
 			<form method="post" action="?/signInEmail" use:enhance>
 				<div>
@@ -25,14 +37,15 @@
 					<small>Пароль:</small>
 					<input class="form-control form-control-sm" type="password" name="password" />
 				</div>
-				<hr />
-				<div>
-					<small>Имя (для регистрации):</small>
-					<input class="form-control form-control-sm" name="name" bind:value={name} />
-				</div>
+				{#if !isLogin}
+					<div>
+						<small>Имя:</small>
+						<input class="form-control form-control-sm" name="name" />
+					</div>
+				{/if}
 			</form>
 			<div>
-				{#if name.trim() == ''}
+				{#if isLogin}
 					<button class="btn btn-sm btn-dark text-light">Войти</button>
 				{:else}
 					<button class="btn btn-sm btn-dark text-light" formaction="?/signUpEmail"
