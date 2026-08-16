@@ -28,32 +28,34 @@
 
 		<div class="d-flex flex-column gap-2">
 			<form method="post" action="?/signInEmail" use:enhance>
-				{#if !isLogin}
+				<div class="d-flex flex-column gap-2">
+					{#if !isLogin}
+						<div>
+							<small>Имя:</small>
+							<input class="form-control form-control-sm" name="name" />
+						</div>
+					{/if}
+					<div class="d-flex gap-2">
+						<div class="w-50">
+							<small>Email:</small>
+							<input class="form-control form-control-sm" type="email" name="email" />
+						</div>
+						<div class="w-50">
+							<small>Пароль:</small>
+							<input class="form-control form-control-sm" type="password" name="password" />
+						</div>
+					</div>
 					<div>
-						<small>Имя:</small>
-						<input class="form-control form-control-sm" name="name" />
-					</div>
-				{/if}
-				<div class="d-flex gap-2">
-					<div class="w-50">
-						<small>Email:</small>
-						<input class="form-control form-control-sm" type="email" name="email" />
-					</div>
-					<div class="w-50">
-						<small>Пароль:</small>
-						<input class="form-control form-control-sm" type="password" name="password" />
+						{#if isLogin}
+							<button class="btn btn-sm btn-dark text-light">Войти</button>
+						{:else}
+							<button class="btn btn-sm btn-dark text-light" formaction="?/signUpEmail"
+								>Зарегистрироваться</button
+							>
+						{/if}
 					</div>
 				</div>
 			</form>
-			<div>
-				{#if isLogin}
-					<button class="btn btn-sm btn-dark text-light">Войти</button>
-				{:else}
-					<button class="btn btn-sm btn-dark text-light" formaction="?/signUpEmail"
-						>Зарегистрироваться</button
-					>
-				{/if}
-			</div>
 			{#if form?.message}
 				<p style="color: red">{form?.message ?? ''}</p>
 			{/if}

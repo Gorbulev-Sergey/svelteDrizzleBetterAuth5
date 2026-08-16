@@ -2,7 +2,6 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import type { PageServerLoad } from './$types';
 import { auth } from '$lib/server/auth';
-import { APIError } from 'better-auth/api';
 
 export const load: PageServerLoad = (event) => {
 	if (event.locals.user) {
@@ -26,7 +25,7 @@ export const actions: Actions = {
 				}
 			});
 		} catch (error) {
-			if (error instanceof APIError) {
+			if (error instanceof Error) {
 				return fail(400, { message: error.message || 'Signin failed' });
 			}
 			return fail(500, { message: 'Unexpected error' });
@@ -50,7 +49,7 @@ export const actions: Actions = {
 				}
 			});
 		} catch (error) {
-			if (error instanceof APIError) {
+			if (error instanceof Error) {
 				return fail(400, { message: error.message || 'Registration failed' });
 			}
 			return fail(500, { message: 'Unexpected error' });
