@@ -16,33 +16,34 @@
 	<Block>
 		<div class="d-flex align-items-center justify-content-between">
 			<p><b>{isLogin ? 'Воити' : 'Зарегистрироваться'}</b> через логин и пароль:</p>
-
 			<div class="d-flex align-items-center">
-				<button class="btn btn-sm bg-transparent text-dark border-0" style="cursor: text;"
-					>или</button
-				>
-				<button class="btn btn-sm bg-light text-dark" onclick={() => (isLogin = !isLogin)}
-					>{!isLogin ? 'Воити' : 'Зарегистрироваться'}
+				<button class="btn btn-sm bg-transparent text-dark border-0" style="cursor: text;">
+					или
+				</button>
+				<button class="btn btn-sm bg-light text-dark" onclick={() => (isLogin = !isLogin)}>
+					{!isLogin ? 'Воити' : 'Зарегистрироваться'}
 				</button>
 			</div>
 		</div>
 
 		<div class="d-flex flex-column gap-2">
 			<form method="post" action="?/signInEmail" use:enhance>
-				<div>
-					<small>Email:</small>
-					<input class="form-control form-control-sm" type="email" name="email" />
-				</div>
-				<div>
-					<small>Пароль:</small>
-					<input class="form-control form-control-sm" type="password" name="password" />
-				</div>
 				{#if !isLogin}
 					<div>
 						<small>Имя:</small>
 						<input class="form-control form-control-sm" name="name" />
 					</div>
 				{/if}
+				<div class="d-flex gap-2">
+					<div class="w-50">
+						<small>Email:</small>
+						<input class="form-control form-control-sm" type="email" name="email" />
+					</div>
+					<div class="w-50">
+						<small>Пароль:</small>
+						<input class="form-control form-control-sm" type="password" name="password" />
+					</div>
+				</div>
 			</form>
 			<div>
 				{#if isLogin}
