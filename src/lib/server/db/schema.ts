@@ -1,4 +1,5 @@
 import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { user } from './auth.schema';
 
 export const posts = pgTable('posts', {
 	id: text('id').primaryKey(),
@@ -10,7 +11,7 @@ export const posts = pgTable('posts', {
 		.defaultNow()
 		.$onUpdate(() => new Date())
 		.notNull(),
-	userId: text()
+	userId: text().references(() => user.id, { onDelete: 'cascade' })
 });
 
 export * from './auth.schema';

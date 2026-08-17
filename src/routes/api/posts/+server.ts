@@ -1,6 +1,5 @@
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
-import { redirect } from '@sveltejs/kit';
 
 export async function GET({ locals }) {
 	if (locals.user?.role != 'admin') {
