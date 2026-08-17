@@ -3,8 +3,8 @@ import { posts } from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
 
 export async function GET({ locals }) {
-	if (!locals.user) {
-		return new Response(JSON.stringify({ error: 'Вы не авторизованы!' }), {
+	if (locals.user?.role != 'admin') {
+		return new Response(JSON.stringify({ error: 'Доступ ограничен!' }), {
 			status: 401,
 			headers: { 'Content-Type': 'application/json' }
 		});
