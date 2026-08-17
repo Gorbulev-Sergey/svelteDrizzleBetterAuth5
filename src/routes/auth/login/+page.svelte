@@ -44,6 +44,7 @@
 							<small>Пароль:</small>
 							<input class="form-control form-control-sm" type="password" name="password" />
 						</div>
+						<input hidden name="redirectURL" value="/" />
 					</div>
 					<div>
 						{#if isLogin}

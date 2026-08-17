@@ -15,6 +15,7 @@ export const actions: Actions = {
 		const formData = await event.request.formData();
 		const email = formData.get('email')?.toString() ?? '';
 		const password = formData.get('password')?.toString() ?? '';
+		const redirectURL = formData.get('redirectURL')?.toString() ?? '/auth';
 
 		try {
 			await auth.api.signInEmail({
@@ -31,13 +32,14 @@ export const actions: Actions = {
 			return fail(500, { message: 'Unexpected error' });
 		}
 
-		return redirect(302, '/auth');
+		return redirect(302, redirectURL);
 	},
 	signUpEmail: async (event) => {
 		const formData = await event.request.formData();
 		const email = formData.get('email')?.toString() ?? '';
 		const password = formData.get('password')?.toString() ?? '';
 		const name = formData.get('name')?.toString() ?? '';
+		const redirectURL = formData.get('redirectURL')?.toString() ?? '/auth';
 
 		try {
 			await auth.api.signUpEmail({
@@ -55,7 +57,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'Unexpected error' });
 		}
 
-		return redirect(302, '/auth');
+		return redirect(302, redirectURL);
 	},
 	signInSocial: async (event) => {
 		const formData = await event.request.formData();
