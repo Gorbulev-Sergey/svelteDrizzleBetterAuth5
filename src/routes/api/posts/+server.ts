@@ -1,5 +1,6 @@
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
+import { asc, desc } from 'drizzle-orm';
 
 export async function GET({ locals }) {
 	if (locals.user?.role != 'admin') {
@@ -9,7 +10,17 @@ export async function GET({ locals }) {
 		});
 	}
 
-	let p = await db.select().from(posts).orderBy(posts.createdAt);
+	let p = await db.query.posts.findMany({
+		with: {
+			user: {
+				columns: {
+					id: true,
+					name: true
+				}
+			}
+		},
+		orderBy: asc(posts.createdAt)
+	});
 	return new Response(JSON.stringify(p));
 }
 

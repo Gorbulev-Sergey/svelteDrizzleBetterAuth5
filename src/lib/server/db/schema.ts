@@ -15,4 +15,11 @@ export const posts = pgTable('posts', {
 	userId: text().references(() => user.id, { onDelete: 'cascade' })
 });
 
+export const postsRelations = relations(posts, ({ one }) => ({
+	user: one(user, {
+		fields: [posts.userId],
+		references: [user.id]
+	})
+}));
+
 export * from './auth.schema';

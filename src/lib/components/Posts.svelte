@@ -20,7 +20,9 @@
 						<div class="sticky-top w-100 px-2 py-1 bg-light bg-opacity-75">
 							<b>{post.title}</b>
 							<div>{post.description}</div>
-							<small><b>{post.userId}</b></small>
+							{#if post.user?.name}
+								<small>автор: <b>{post.user.name}</b></small>
+							{/if}
 						</div>
 					</div>
 				</div>
