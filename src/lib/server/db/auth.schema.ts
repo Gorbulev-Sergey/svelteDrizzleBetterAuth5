@@ -1,5 +1,14 @@
 import { relations } from 'drizzle-orm';
-import { pgTable, text, timestamp, boolean, index, serial, foreignKey } from 'drizzle-orm/pg-core';
+import {
+	pgTable,
+	text,
+	timestamp,
+	boolean,
+	index,
+	serial,
+	foreignKey,
+	integer
+} from 'drizzle-orm/pg-core';
 import { posts } from './schema';
 
 export const roles = pgTable('roles', {
@@ -20,8 +29,8 @@ export const user = pgTable(
 			.defaultNow()
 			.$onUpdate(() => new Date())
 			.notNull(),
-		roleId: serial()
-			.notNull()
+		roleId: integer()
+			.default(1)
 			.references(() => roles.id, { onDelete: 'cascade' })
 	},
 	(table) => [index('user_roleId_idx').on(table.roleId)]
@@ -106,13 +115,6 @@ export const sessionRelations = relations(session, ({ one }) => ({
 export const accountRelations = relations(account, ({ one }) => ({
 	user: one(user, {
 		fields: [account.userId],
-		references: [user.id]
-	})
-}));
-
-export const postRelations = relations(posts, ({ one }) => ({
-	user: one(user, {
-		fields: [posts.userId],
 		references: [user.id]
 	})
 }));

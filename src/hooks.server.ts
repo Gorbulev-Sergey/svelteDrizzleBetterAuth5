@@ -27,7 +27,7 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 			event.locals.session = session.session;
 			event.locals.user = {
 				...session.user,
-				role: result.role.name // теперь у user есть поле role
+				role: result.role?.name // теперь у user есть поле role
 			};
 		} else {
 			// Пользователь есть в сессии, но нет в таблице users — можно либо очистить сессию, либо просто не добавлять role
