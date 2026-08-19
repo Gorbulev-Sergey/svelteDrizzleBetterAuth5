@@ -1,14 +1,15 @@
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
+import { json } from '@sveltejs/kit';
 import { asc, desc } from 'drizzle-orm';
 
 export async function GET({ locals }) {
-	if (locals.user?.role != 'admin') {
-		return new Response(JSON.stringify({ error: 'Доступ ограничен!' }), {
-			status: 401,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	}
+	// if (locals.user?.role != 'admin') {
+	// 	return new Response(JSON.stringify({ error: 'Доступ ограничен!' }), {
+	// 		status: 401,
+	// 		headers: { 'Content-Type': 'application/json' }
+	// 	});
+	// }
 
 	let p = await db.query.posts.findMany({
 		with: {
@@ -21,7 +22,7 @@ export async function GET({ locals }) {
 		},
 		orderBy: asc(posts.createdAt)
 	});
-	return new Response(JSON.stringify(p));
+	return json(p);
 }
 
 export async function POST({ request }) {
