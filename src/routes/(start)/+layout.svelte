@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
+	import { STORE } from '$lib/store.svelte.js';
 
 	let { children, data } = $props();
 </script>
@@ -16,7 +17,14 @@
 			<b>Drizzle BetterAuth</b> проект
 		</a>
 		<div class="flex-grow-1 d-flex align-items-center justify-content-end gap-2">
-			<a class="btn btn-sm btn-light text-dark" href={resolve('/auth')}>Auth</a>
+			{#if STORE.snippet}
+				{@render STORE.snippet()}
+			{/if}
+			{#if data.user?.role != 'admin'}
+				<a class="btn btn-sm btn-light text-dark" href={resolve('/auth')}>Войти</a>
+			{:else}
+				<a class="btn btn-sm btn-light text-dark" href={resolve('/cpanel')}> Панель управления </a>
+			{/if}
 		</div>
 	</div>
 </div>
