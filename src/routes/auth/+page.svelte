@@ -9,12 +9,15 @@
 
 <Column>
 	<Block>
-		<h4>Привет, {data.user.name}!</h4>
-		<p>Ваш user ID is {data.user.id}.</p>
-		<div class="d-flex gap-2">
-			<form method="post" action="?/signOut" use:enhance>
-				<button class="btn btn-sm btn-dark text-light">Выйти через form</button>
-			</form>
+		<div class="d-flex flex-column gap-2">
+			<h4>Привет, {data.user.name}!</h4>
+			<div>Ваш ID: <b>{data.user.id}</b>.</div>
+			<div>Ваша роль: <b>{data.user.role}</b>.</div>
+			<div class="d-flex gap-2">
+				<form method="post" action="?/signOut" use:enhance>
+					<button class="btn btn-sm btn-dark text-light">Выйти через form</button>
+				</form>
+			</div>
 		</div>
 	</Block>
 </Column>

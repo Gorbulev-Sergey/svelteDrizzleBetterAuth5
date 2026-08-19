@@ -1,17 +1,28 @@
 import { db } from '$lib/server/db';
 import { posts } from '$lib/server/db/schema';
-import { redirect } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
+import { asc, desc } from 'drizzle-orm';
 
 export async function GET({ locals }) {
-	if (!locals.user) {
-		return new Response(JSON.stringify({ error: 'Вы не авторизованы!' }), {
-			status: 401,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	}
+	// if (locals.user?.role != 'admin') {
+	// 	return new Response(JSON.stringify({ error: 'Доступ ограничен!' }), {
+	// 		status: 401,
+	// 		headers: { 'Content-Type': 'application/json' }
+	// 	});
+	// }
 
-	let p = await db.select().from(posts).orderBy(posts.createdAt);
-	return new Response(JSON.stringify(p));
+	let p = await db.query.posts.findMany({
+		with: {
+			user: {
+				columns: {
+					id: true,
+					name: true
+				}
+			}
+		},
+		orderBy: asc(posts.createdAt)
+	});
+	return json(p);
 }
 
 export async function POST({ request }) {

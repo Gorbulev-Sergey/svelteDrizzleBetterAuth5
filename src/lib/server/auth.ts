@@ -4,6 +4,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
+import { localization } from 'better-auth-localization';
 
 export const auth = betterAuth({
 	baseURL: env.ORIGIN,
@@ -21,6 +22,11 @@ export const auth = betterAuth({
 		}
 	},
 	plugins: [
+		localization({
+			getLocale: () => 'ru-RU',
+			defaultLocale: 'ru-RU', // Язык, который будет использоваться по умолчанию
+			fallbackLocale: 'default' // Язык-запасной
+		}),
 		sveltekitCookies(getRequestEvent) // make sure this is the last plugin in the array
 	]
 });
