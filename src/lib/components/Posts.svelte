@@ -8,6 +8,7 @@
 		posts: TPost[];
 	}
 	let { title, gap = 4, columns = 4, posts }: IProps = $props();
+	let tags = ['Видео', 'Фото', 'Новости'];
 </script>
 
 {#snippet sPost1(post: TPost)}
@@ -50,12 +51,12 @@
 				</div>
 
 				<div class="d-flex text-nowrap">
-					{#each new Array(3) as _, i}
+					{#each tags as item, i}
 						<button
-							class="btn btn-sm btn-light bg-light text-secondary py-0 position-absolute border-secondary border-opacity-10"
+							class="btn btn-sm btn-light py-0 bg-light text-secondary border-secondary border-opacity-10 position-absolute"
 							style="right: {i / 5}em; top:.25em; bottom:.25em"
 						>
-							Тег {i + 1}
+							{i < tags.length - 1 ? '' : item}
 						</button>
 					{/each}
 				</div>
