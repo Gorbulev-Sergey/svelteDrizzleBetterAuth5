@@ -1,7 +1,7 @@
 <script lang="ts">
 	let height = '100dvh';
 	let menuWidth = $state('auto');
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <div class="d-flex" style="height:{height}">
@@ -40,9 +40,20 @@
 				<div class="btn btn-light bg-transparent border-0 text-dark text-uppercase px-1">
 					<b>Публикации</b>
 				</div>
-				<div class="flex-grow-1 d-flex align-items-center justify-content-end">
+				<div class="flex-grow-1 d-flex align-items-center justify-content-end gap-1">
 					<a
-						class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark text-start"
+						class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark"
+						href="/auth"
+					>
+						<b title={data.user?.name}
+							>{data.user?.name
+								?.split(' ')
+								.map((v) => v[0])
+								.join('')}
+						</b>
+					</a>
+					<a
+						class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark"
 						title=""
 						href="/"
 					>
