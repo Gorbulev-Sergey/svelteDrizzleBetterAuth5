@@ -28,7 +28,7 @@
 
 {#snippet sPost2(post: TPost)}
 	<div class="col">
-		<div class=" border-light border rounded h-100">
+		<div class=" rounded h-100">
 			<div class="d-flex align-items-start justify-content-start px-1 py-1">
 				<small class="text-secondary"
 					>{new Date(post.createdAt?.toString())
@@ -48,9 +48,15 @@
 				class="rounded position-relative"
 				style="background-image: url({post.cover}); min-height: 11.5em; background-size:cover; background-position: center; background-repeat: no-repeat"
 			></div>
-			<div class="d-flex flex-column px-1 py-1 bg-light bg-opacity-75">
+			<div class="d-flex flex-column px-1 py-1">
 				<b class="text-uppercase">{post.title}</b>
 				<small class="text-secondary" style="margin-top: -.2em;">{post.description}</small>
+			</div>
+			<div class="d-flex px-1 py-1" style="margin-top: -.2em;">
+				<button
+					class="btn btn-sm btn-light bg-secondary bg-opacity-10 border-0"
+					style="padding: .25em .5em;">Подробнее...</button
+				>
 			</div>
 		</div>
 	</div>

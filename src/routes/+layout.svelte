@@ -24,7 +24,9 @@
 			{#if data.user?.role != 'admin'}
 				<a class="btn btn-sm btn-light text-dark" href={resolve('/auth')}>Войти</a>
 			{:else}
-				<a class="btn btn-sm btn-light text-dark" href={resolve('/cpanel')}> Панель управления </a>
+				<a class="btn btn-sm btn-light text-dark border-0" href={resolve('/cpanel')}>
+					Панель управления
+				</a>
 			{/if}
 		</div>
 	</div>
