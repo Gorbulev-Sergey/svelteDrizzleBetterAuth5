@@ -3,7 +3,6 @@
 	import Block from '$lib/components/Block.svelte';
 	import Column from '$lib/components/Column.svelte';
 	import Posts from '$lib/components/Posts.svelte';
-	import Subtitle from '$lib/components/Subtitle.svelte';
 	import { getPosts } from '$lib/scripts/posts';
 	import { STORE } from '$lib/store.svelte';
 	import { onDestroy, onMount } from 'svelte';
@@ -23,7 +22,7 @@
 {/snippet}
 
 <Column>
-	<Block _class="px-5 py-1 bg-light">
+	<Block _class="px-4 py-2 bg-light">
 		<Posts {posts} gap={3} columns={5} />
 	</Block>
 </Column>
