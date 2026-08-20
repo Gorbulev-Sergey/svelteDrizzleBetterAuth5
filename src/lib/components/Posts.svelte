@@ -9,6 +9,7 @@
 	}
 	let { title, gap = 4, columns = 4, posts }: IProps = $props();
 	let tags = ['Видео', 'Фото', 'Новости'];
+	let isShowTagsMenu = $state(false);
 </script>
 
 {#snippet sPost1(post: TPost)}
@@ -52,13 +53,39 @@
 
 				<div class="d-flex text-nowrap">
 					{#each tags as item, i}
+						<!-- svelte-ignore a11y_mouse_events_have_key_events -->
 						<button
 							class="btn btn-sm btn-light py-0 bg-light text-secondary border-secondary border-opacity-10 position-absolute"
 							style="right: {i / 5}em; top:.25em; bottom:.25em"
+							onmouseover={() => (isShowTagsMenu = true)}
+							onmouseout={() => (isShowTagsMenu = false)}
 						>
-							{i < tags.length - 1 ? '' : item}
+							<!-- {i < tags.length - 1 ? '' : item} -->
+							#
 						</button>
 					{/each}
+					<!-- svelte-ignore a11y_no_static_element_interactions -->
+					<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+					<div
+						class="{isShowTagsMenu
+							? ''
+							: 'collapse'} position-absolute z-1 bg-light p-1 border-secondary border-opacity-10 rounded end-0"
+						style="top:1.5em"
+						onmouseover={() => (isShowTagsMenu = true)}
+						onmouseout={() => (isShowTagsMenu = false)}
+					>
+						<div class="d-flex flex-column bg-light">
+							{#each [...tags.sort((a, b) => a.localeCompare(b))] as item, j}
+								<button
+									class="btn btn-sm btn-light py-0 text-start"
+									onmouseover={() => (isShowTagsMenu = true)}
+									onmouseout={() => (isShowTagsMenu = false)}
+								>
+									{item}
+								</button>
+							{/each}
+						</div>
+					</div>
 				</div>
 			</div>
 			{#if post.cover}
