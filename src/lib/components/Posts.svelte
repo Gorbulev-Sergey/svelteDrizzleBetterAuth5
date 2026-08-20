@@ -63,7 +63,7 @@
 {/snippet}
 
 {#if posts.length > 0}
-	<h4 class="px-1 mb-1">Публикации</h4>
+	<h4 class="px-1 mb-0" style="font-size: 1.5em;">Публикации</h4>
 	<div class="row w-100 row-cols-1 row-cols-xl-4 gx-2 gy-4">
 		{#each posts as post}
 			{@render sPost2?.(post)}
