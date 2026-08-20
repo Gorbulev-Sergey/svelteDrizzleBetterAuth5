@@ -11,7 +11,7 @@
 	>
 		<div class="d-flex align-items-center justify-content-between gap-2">
 			<a
-				class="btn btn-secondary bg-transparent text-dark border-0 text-uppercase text-nowrap"
+				class="btn btn-secondary bg-transparent text-dark border-0 text-uppercase text-nowrap px-2"
 				href="/cpanel">Панель <b>управления</b></a
 			>
 		</div>
@@ -27,8 +27,8 @@
 			{/each}
 		</div>
 	</div>
-	<div class="flex-grow-1 d-flex flex-column" style="height:{height}">
-		<div class="d-flex align-items-center gap-1 p-2 bg-ligth">
+	<div class="flex-grow-1 d-flex flex-column" style="height:{height}; width:{menuWidth}">
+		<div class="d-flex align-items-center gap-0 py-2 px-2 bg-ligth">
 			<button
 				class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark text-start px-2 py-1"
 				title=""
@@ -36,8 +36,8 @@
 			>
 				{menuWidth == 'auto' ? '>' : '<'}
 			</button>
-			<div class="d-flex align-items-center gap-3 w-100">
-				<div class="btn btn-light bg-transparent border-0 text-dark text-uppercase">
+			<div class="d-flex align-items-center px-1 gap-1 w-100">
+				<div class="btn btn-light bg-transparent border-0 text-dark text-uppercase px-1">
 					<b>Публикации</b>
 				</div>
 				<div class="flex-grow-1 d-flex align-items-center justify-content-end">

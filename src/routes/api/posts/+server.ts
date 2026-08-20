@@ -20,7 +20,7 @@ export async function GET({ locals }) {
 				}
 			}
 		},
-		orderBy: asc(posts.createdAt)
+		orderBy: desc(posts.createdAt)
 	});
 	return json(p);
 }
