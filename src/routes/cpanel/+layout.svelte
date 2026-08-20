@@ -36,11 +36,18 @@
 			>
 				{menuWidth == 'auto' ? '>' : '<'}
 			</button>
-			<div class="d-flex align-items-center px-1 gap-1 w-100">
+			<div class="d-flex align-items-center justify-content-between px-1 gap-1 w-100">
 				<div class="btn btn-light bg-transparent border-0 text-dark text-uppercase px-1">
 					<b>Публикации</b>
 				</div>
-				<div class="flex-grow-1 d-flex align-items-center justify-content-end gap-1">
+				<div class="d-flex align-items-center gap-1">
+					{#each new Array(5) as _, i}
+						<button class="btn btn-sm btn-light bg-white border-0 text-dark py-0">
+							Фильтр {i + 1}
+						</button>
+					{/each}
+				</div>
+				<div class="d-flex align-items-center justify-content-end gap-1">
 					<a
 						class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark"
 						href="/auth"
