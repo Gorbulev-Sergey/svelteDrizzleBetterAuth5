@@ -41,7 +41,7 @@
 						.replace(' г.', '')}</small
 				>
 				{#if post.user?.name}
-					<small class=" text-secondary">, {post.user.name}</small>
+					<small class=" text-secondary">, <i>{post.user.name}</i></small>
 				{/if}
 			</div>
 			<div
@@ -50,7 +50,7 @@
 			></div>
 			<div class="d-flex flex-column px-1 py-1">
 				<b class="text-uppercase">{post.title}</b>
-				<small class="text-secondary" style="margin-top: -.2em;">{post.description}</small>
+				<small class="text-secondary" style="margin-top: -.15em;">{post.description}</small>
 			</div>
 			<div class="d-flex px-1 py-1" style="margin-top: -.2em;">
 				<button

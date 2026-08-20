@@ -16,15 +16,26 @@
 		<a class="btn btn-light bg-light text-dark border-0 text-uppercase" href="/">
 			<b>Drizzle BetterAuth</b> проект
 		</a>
+
+		<!-- <b class="px-2 py-1 bg-info bg-opacity-10 rounded">{STORE.message}</b> -->
+
 		<div class="flex-grow-1 d-flex align-items-center justify-content-end gap-2">
-			<svelte:component this={STORE.subtitle} />
-			{#if STORE.snippet}
-				{@render STORE.snippet()}
-			{/if}
+			<div class="d-flex gap-1">
+				{#each new Array(5) as _, i}
+					<button
+						class="btn btn-sm btn-light text-dark border-0 text-uppercase {i == 0
+							? 'fw-bold'
+							: ''} ">Страница {i + 1}</button
+					>
+				{/each}
+			</div>
 			{#if data.user?.role != 'admin'}
 				<a class="btn btn-sm btn-light text-dark" href={resolve('/auth')}>Войти</a>
 			{:else}
-				<a class="btn btn-sm btn-light text-dark border-0" href={resolve('/cpanel')}>
+				<a
+					class="btn btn-sm btn-light bg-secondary bg-opacity-10 border-0"
+					href={resolve('/cpanel')}
+				>
 					Панель управления
 				</a>
 			{/if}
