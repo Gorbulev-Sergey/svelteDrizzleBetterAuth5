@@ -6,6 +6,6 @@ interface IStore {
 }
 
 export let STORE = $state<IStore>({
-	message: 'ПУБЛИКАЦИИ',
+	message: 'Публикации',
 	snippet: null
 });

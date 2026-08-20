@@ -13,5 +13,5 @@
 </script>
 
 <Column>
-	<Posts {posts} />
+	<Posts {posts} title="Публикации" />
 </Column>

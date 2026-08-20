@@ -1,13 +1,17 @@
 <script lang="ts">
+	import type { TPost } from '$lib';
 	import Block from '$lib/components/Block.svelte';
 	import Column from '$lib/components/Column.svelte';
+	import Posts from '$lib/components/Posts.svelte';
 	import Subtitle from '$lib/components/Subtitle.svelte';
+	import { getPosts } from '$lib/scripts/posts';
 	import { STORE } from '$lib/store.svelte';
 	import { onDestroy, onMount } from 'svelte';
 
-	onMount(() => {
+	let posts = $state<TPost[]>([] as TPost[]);
+	onMount(async () => {
 		STORE.snippet = Snip;
-		STORE.subtitle = Subtitle;
+		posts = await getPosts();
 	});
 	onDestroy(() => {
 		STORE.snippet = null;
@@ -19,10 +23,7 @@
 {/snippet}
 
 <Column>
-	<Block>
-		<h4>Панель управления</h4>
-		<div>
-			<input class="form-control form-control-sm" bind:value={STORE.message} />
-		</div>
+	<Block _class="px-5 py-1 bg-light">
+		<Posts {posts} gap={3} columns={5} />
 	</Block>
 </Column>

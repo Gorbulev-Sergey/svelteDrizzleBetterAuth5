@@ -1,18 +1,19 @@
 <script lang="ts">
-	import Title from '$lib/components/Title.svelte';
-
 	let height = '100dvh';
 	let menuWidth = $state('auto');
-	let title = Title;
+	let { children } = $props();
 </script>
 
 <div class="d-flex" style="height:{height}">
 	<div
-		class="d-flex flex-column bg-secondary bg-opacity-10 gap-3 p-3"
+		class="d-flex flex-column bg-secondary bg-opacity-10 gap-3 p-2"
 		style="min-height:{height}; width:{menuWidth}"
 	>
 		<div class="d-flex align-items-center justify-content-between gap-2">
-			<div class="text-uppercase text-nowrap">Панель <b>управления</b></div>
+			<a
+				class="btn btn-secondary bg-transparent text-dark border-0 text-uppercase text-nowrap"
+				href="/cpanel">Панель <b>управления</b></a
+			>
 		</div>
 		<div class="d-flex flex-column gap-1">
 			{#each new Array(5) as _, i}
@@ -27,7 +28,7 @@
 		</div>
 	</div>
 	<div class="flex-grow-1 d-flex flex-column" style="height:{height}">
-		<div class="d-flex align-items-center gap-1 p-2 sticky-top">
+		<div class="d-flex align-items-center gap-1 p-2 bg-ligth">
 			<button
 				class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark text-start px-2 py-1"
 				title=""
@@ -35,8 +36,22 @@
 			>
 				{menuWidth == 'auto' ? '>' : '<'}
 			</button>
-			<div class="text-uppercase"><b>Подзаголовок</b></div>
+			<div class="d-flex align-items-center gap-3 w-100">
+				<div class="btn btn-light bg-transparent border-0 text-dark text-uppercase">
+					<b>Публикации</b>
+				</div>
+				<div class="flex-grow-1 d-flex align-items-center justify-content-end">
+					<a
+						class="btn btn-sm btn-secondary bg-secondary bg-opacity-10 border-0 text-dark text-start"
+						title=""
+						href="/"
+					>
+						Вернуться на сайт
+					</a>
+				</div>
+			</div>
 		</div>
-		<div class=" p-2" style="min-height: 200%;">Содержимое</div>
+		<!-- <div class="px-3" style="min-height: 200%;">Содержимое</div> -->
+		{@render children?.()}
 	</div>
 </div>
