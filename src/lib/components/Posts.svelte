@@ -50,10 +50,10 @@
 				</div>
 
 				<div class="d-flex text-nowrap">
-					{#each new Array(4) as _, i}
+					{#each new Array(3) as _, i}
 						<button
-							class="btn btn-sm btn-light bg-light border-0 text-dark py-0 position-absolute shadow-sm"
-							style="right: {i}em; top:.25em; bottom:.25em"
+							class="btn btn-sm btn-light bg-light text-secondary py-0 position-absolute border-secondary border-opacity-10"
+							style="right: {i / 5}em; top:.25em; bottom:.25em"
 						>
 							Тег {i + 1}
 						</button>
