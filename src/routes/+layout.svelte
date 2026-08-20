@@ -17,6 +17,7 @@
 			<b>Drizzle BetterAuth</b> проект
 		</a>
 		<div class="flex-grow-1 d-flex align-items-center justify-content-end gap-2">
+			<svelte:component this={STORE.subtitle} />
 			{#if STORE.snippet}
 				{@render STORE.snippet()}
 			{/if}

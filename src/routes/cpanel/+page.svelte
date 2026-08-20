@@ -1,11 +1,13 @@
 <script lang="ts">
 	import Block from '$lib/components/Block.svelte';
 	import Column from '$lib/components/Column.svelte';
+	import Subtitle from '$lib/components/Subtitle.svelte';
 	import { STORE } from '$lib/store.svelte';
-	import { onDestroy, onMount, type Snippet } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	onMount(() => {
 		STORE.snippet = Snip;
+		STORE.subtitle = Subtitle;
 	});
 	onDestroy(() => {
 		STORE.snippet = null;

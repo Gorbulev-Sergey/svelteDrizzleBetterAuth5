@@ -1,6 +1,9 @@
 <script lang="ts">
+	import Title from '$lib/components/Title.svelte';
+
 	let height = '100dvh';
 	let menuWidth = $state('auto');
+	let title = Title;
 </script>
 
 <div class="d-flex" style="height:{height}">
