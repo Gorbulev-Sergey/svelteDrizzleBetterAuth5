@@ -31,8 +31,8 @@
 
 {#snippet sPost2(post: TPost)}
 	<div class="col">
-		<div class=" rounded h-100">
-			<div class="d-flex align-items-center px-1 py-1">
+		<div class="rounded h-100">
+			<div class="d-flex align-items-center px-1 py-1 position-relative">
 				<div class="d-flex align-items-center">
 					<small class="text-secondary"
 						>{new Date(post.createdAt ?? '')
@@ -48,23 +48,16 @@
 						<small class=" text-secondary">, <i>{post.user.name}</i></small>
 					{/if}
 				</div>
-				<div class="flex-grow-1 d-flex align-items-center justify-content-end">
-					<div class="d-flex justify-content-end gap-1 w-100">
+
+				<div class="d-flex text-nowrap">
+					{#each new Array(4) as _, i}
 						<button
-							class="btn btn-sm btn-light bg-white bg-opacity-50 border-0 text-dark py-0"
-							style="marker-end: .1em;"
+							class="btn btn-sm btn-light bg-light border-0 text-dark py-0 position-absolute shadow-sm"
+							style="right: {i}em; top:.25em; bottom:.25em"
 						>
-							...
+							Тег {i + 1}
 						</button>
-						<!-- {#each new Array(2) as _, i}
-							<button
-								class="btn btn-sm btn-light bg-white bg-opacity-50 border-0 text-dark py-0"
-								style="marker-end: .1em;"
-							>
-								Тег {i + 1}
-							</button>
-						{/each} -->
-					</div>
+					{/each}
 				</div>
 			</div>
 			{#if post.cover}
