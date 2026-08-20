@@ -32,20 +32,40 @@
 {#snippet sPost2(post: TPost)}
 	<div class="col">
 		<div class=" rounded h-100">
-			<div class="d-flex align-items-start justify-content-start px-1 py-1">
-				<small class="text-secondary"
-					>{new Date(post.createdAt?.toString())
-						.toLocaleDateString('ru-Ru', {
-							weekday: 'short',
-							day: 'numeric',
-							month: 'long',
-							year: 'numeric'
-						})
-						.replace(' г.', '')}</small
-				>
-				{#if post.user?.name}
-					<small class=" text-secondary">, <i>{post.user.name}</i></small>
-				{/if}
+			<div class="d-flex align-items-center px-1 py-1">
+				<div class="d-flex align-items-center">
+					<small class="text-secondary"
+						>{new Date(post.createdAt ?? '')
+							.toLocaleDateString('ru-Ru', {
+								weekday: 'short',
+								day: 'numeric',
+								month: 'long',
+								year: 'numeric'
+							})
+							.replace(' г.', '')}</small
+					>
+					{#if post.user?.name}
+						<small class=" text-secondary">, <i>{post.user.name}</i></small>
+					{/if}
+				</div>
+				<div class="flex-grow-1 d-flex align-items-center justify-content-end">
+					<div class="d-flex justify-content-end gap-1 w-100">
+						<button
+							class="btn btn-sm btn-light bg-white bg-opacity-50 border-0 text-dark py-0"
+							style="marker-end: .1em;"
+						>
+							...
+						</button>
+						<!-- {#each new Array(2) as _, i}
+							<button
+								class="btn btn-sm btn-light bg-white bg-opacity-50 border-0 text-dark py-0"
+								style="marker-end: .1em;"
+							>
+								Тег {i + 1}
+							</button>
+						{/each} -->
+					</div>
+				</div>
 			</div>
 			{#if post.cover}
 				<div
@@ -57,7 +77,7 @@
 				<b class="text-uppercase">{post.title}</b>
 				<small class="text-secondary" style="margin-top: -.15em;">{post.description}</small>
 			</div>
-			<div class="d-flex px-1 py-1" style="margin-top: -.05em;">
+			<div class="d-flex align-items-center gap-1 px-1 py-1" style="margin-top: -.05em;">
 				<button
 					class="btn btn-sm btn-light bg-secondary bg-opacity-10 border-0"
 					style="padding: .25em .5em;">Подробнее...</button
